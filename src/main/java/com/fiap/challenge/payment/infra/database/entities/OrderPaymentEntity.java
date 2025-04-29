@@ -35,12 +35,8 @@ public class OrderPaymentEntity {
 	  public Order toOrder() {
 		  return new Order(
 				  UUID.fromString(orderId),
-				  null,
-				  null,
 				  UUID.fromString(paymentId),
 				  orderNumber,
-				  null,
-				  null,
 				  isPaid
 		  );
 	  }

@@ -1,6 +1,8 @@
 package com.fiap.challenge.payment.application.usecases;
 
+import com.fiap.challenge.payment.application.domain.models.Order;
+
 public interface ConfirmPaymentUseCase {
 
-	Boolean confirmPayment(String orderId, String paymentId, String paymentStatus);
+	Order confirmPayment(String orderId);
 }

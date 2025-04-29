@@ -31,9 +31,10 @@ public class PaymentService implements CreatePaymentUseCase, ConfirmPaymentUseCa
 	}
 
 	@Override
-	public Boolean confirmPayment(String orderId, String paymentId, String paymentStatus) {
-		// TODO Auto-generated method stub
-		return null;
+	public Order confirmPayment(String orderId) {
+		OrderPaymentEntity orderEntity = orderPaymentRepository.findByOrderId(orderId);
+			orderEntity.setIsPaid(Boolean.TRUE);
+			return orderPaymentRepository.save(orderEntity).toOrder();
 	}
 
 }

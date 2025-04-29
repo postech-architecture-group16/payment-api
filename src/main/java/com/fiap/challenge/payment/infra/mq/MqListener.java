@@ -1,8 +1,5 @@
 package com.fiap.challenge.payment.infra.mq;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
-
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -37,12 +34,8 @@ public class MqListener {
 		OrderDTO orderDTO = objectMapper.readValue(message, OrderDTO.class);
 		Order order = new Order(orderDTO.id(), 
 				null,
-				orderDTO.total(),
-				null,
 				orderDTO.orderNumber(),
-				orderDTO.createAt(),
-				orderDTO.products(),
-				null);
+				Boolean.FALSE);
 		paymentService.createPayment(order);
 		log.info("Order received: {}", order);
 	}
