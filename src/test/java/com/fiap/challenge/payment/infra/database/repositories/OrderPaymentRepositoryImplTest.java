@@ -26,7 +26,7 @@ import software.amazon.awssdk.enhanced.dynamodb.model.PageIterable;
 import software.amazon.awssdk.enhanced.dynamodb.model.ScanEnhancedRequest;
 
 @ExtendWith(MockitoExtension.class)
-public class OrderPaymentRepositoryImplTest {
+class OrderPaymentRepositoryImplTest {
 
 	@InjectMocks
 	private OrderPaymentRepositoryImpl orderPaymentRepository;
@@ -37,7 +37,7 @@ public class OrderPaymentRepositoryImplTest {
 	private OrderPaymentEntity orderPaymentEntity;
 	
 	@BeforeEach
-	public void setUp() {
+	void setUp() {
 		orderPaymentEntity = new OrderPaymentEntity();
 		orderPaymentEntity.setId(UUID.randomUUID());
 		orderPaymentEntity.setOrderId("orderId");
@@ -61,7 +61,7 @@ public class OrderPaymentRepositoryImplTest {
 	void shouldFindByOrderId() {
 		String orderId = orderPaymentEntity.getOrderId();
 		
-		var page = Page.create(List.of(orderPaymentEntity));
+		var page = Page. create(List.of(orderPaymentEntity));
 		SdkIterable<Page<OrderPaymentEntity>> paymentPage = () -> List.of(page).iterator();
 		var paymentPageIterable = PageIterable.create(paymentPage);
 		
