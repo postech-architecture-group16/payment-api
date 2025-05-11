@@ -32,7 +32,7 @@ public class OrderPaymentRepositoryImpl implements OrderPaymentRepository {
 		ScanEnhancedRequest scanEnhancedRequest = ScanEnhancedRequest.builder()
 				.filterExpression(Expression.builder()
 					.expression("orderId = :orderIdVal")
-					.expressionValues(Map.of(":orderIdVal", AttributeValue.builder().s(orderId.toString()).build()))
+					.expressionValues(Map.of(":orderIdVal", AttributeValue.builder().s(orderId).build()))
 					.build())
 				.build();
 		
@@ -46,7 +46,7 @@ public class OrderPaymentRepositoryImpl implements OrderPaymentRepository {
 		ScanEnhancedRequest scanEnhancedRequest = ScanEnhancedRequest.builder()
 				.filterExpression(Expression.builder()
 					.expression("paymentId = :paymentIdVal")
-					.expressionValues(Map.of(":paymentId", AttributeValue.builder().s(paymentId.toString()).build()))
+					.expressionValues(Map.of(":paymentId", AttributeValue.builder().s(paymentId).build()))
 					.build())
 				.build();
 		

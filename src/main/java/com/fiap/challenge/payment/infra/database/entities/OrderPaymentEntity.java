@@ -5,12 +5,14 @@ import java.util.UUID;
 import com.fiap.challenge.payment.application.domain.models.Order;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
 
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamoDbBean
@@ -38,23 +40,6 @@ public class OrderPaymentEntity {
 	public UUID getId() {
 		return id;
 	}
-
-	public String getOrderId() {
-		return orderId;
-	}
-
-	public String getPaymentId() {
-		return paymentId;
-	}
-
-	public Long getOrderNumber() {
-		return orderNumber;
-	}
-
-	public Boolean getIsPaid() {
-		return isPaid;
-	}
-	  
 	  
 }
 	  
