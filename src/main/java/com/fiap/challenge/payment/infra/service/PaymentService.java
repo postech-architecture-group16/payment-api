@@ -1,5 +1,6 @@
 package com.fiap.challenge.payment.infra.service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -33,9 +34,12 @@ public class PaymentService implements CreatePaymentUseCase, ConfirmPaymentUseCa
 
 	@Override
 	public Order confirmPayment(String orderId) {
-		OrderPaymentEntity orderEntity = orderPaymentRepository.findByOrderId(orderId);
-			orderEntity.setIsPaid(Boolean.TRUE);
-			return orderPaymentRepository.save(orderEntity).toOrder();
+		  return orderPaymentRepository.findByOrderId(orderId)
+			        .map(orderEntity -> {
+			            orderEntity.setIsPaid(Boolean.TRUE);
+			            return orderPaymentRepository.save(orderEntity).toOrder();
+			        })
+			        .orElseThrow(() -> new IllegalArgumentException("Order not found for ID: " + orderId));
 	}
 
 }

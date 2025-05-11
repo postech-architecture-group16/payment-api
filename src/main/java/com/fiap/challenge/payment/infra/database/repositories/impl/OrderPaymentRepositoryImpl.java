@@ -1,6 +1,7 @@
 package com.fiap.challenge.payment.infra.database.repositories.impl;
 
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
@@ -28,7 +29,7 @@ public class OrderPaymentRepositoryImpl implements OrderPaymentRepository {
 	}
 
 	@Override
-	public OrderPaymentEntity findByOrderId(String orderId) {
+	public Optional<OrderPaymentEntity> findByOrderId(String orderId) {
 		ScanEnhancedRequest scanEnhancedRequest = ScanEnhancedRequest.builder()
 				.filterExpression(Expression.builder()
 					.expression("orderId = :orderIdVal")
@@ -38,11 +39,11 @@ public class OrderPaymentRepositoryImpl implements OrderPaymentRepository {
 		
 		var history = dynamoDbTemplate.scan(scanEnhancedRequest, OrderPaymentEntity.class);
 
-		return history.items().stream().findFirst().get();
+		return history.items().stream().findFirst();
 	}
 
 	@Override
-	public OrderPaymentEntity findByPaymentId(String paymentId) {
+	public Optional<OrderPaymentEntity> findByPaymentId(String paymentId) {
 		ScanEnhancedRequest scanEnhancedRequest = ScanEnhancedRequest.builder()
 				.filterExpression(Expression.builder()
 					.expression("paymentId = :paymentIdVal")
@@ -51,7 +52,7 @@ public class OrderPaymentRepositoryImpl implements OrderPaymentRepository {
 				.build();
 		
 		var history = dynamoDbTemplate.scan(scanEnhancedRequest, OrderPaymentEntity.class);
-		return history.items().stream().findFirst().get();
+		return history.items().stream().findFirst();
 	}
 
 }
