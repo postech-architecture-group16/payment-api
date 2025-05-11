@@ -67,7 +67,7 @@ class OrderPaymentRepositoryImplTest {
 		
 		when(dynamoDbTemplate.scan(any(ScanEnhancedRequest.class), eq(OrderPaymentEntity.class))).thenReturn(paymentPageIterable);
 		
-		OrderPaymentEntity result = orderPaymentRepository.findByOrderId(orderId);
+		OrderPaymentEntity result = orderPaymentRepository.findByOrderId(orderId).get();
 		
 		Assertions.assertEquals(orderId, result.getOrderId());
 		verify(dynamoDbTemplate).scan(any(ScanEnhancedRequest.class), eq(OrderPaymentEntity.class));
@@ -83,7 +83,7 @@ class OrderPaymentRepositoryImplTest {
 		
 		when(dynamoDbTemplate.scan(any(ScanEnhancedRequest.class), eq(OrderPaymentEntity.class))).thenReturn(paymentPageIterable);
 		
-		OrderPaymentEntity result = orderPaymentRepository.findByPaymentId(paymentId);
+		OrderPaymentEntity result = orderPaymentRepository.findByPaymentId(paymentId).get();
 		
 		Assertions.assertEquals(paymentId, result.getPaymentId());
 		verify(dynamoDbTemplate).scan(any(ScanEnhancedRequest.class), eq(OrderPaymentEntity.class));

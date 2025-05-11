@@ -7,6 +7,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -79,7 +80,7 @@ class PaymentServiceTest {
         existingEntity.setPaymentId(paymentId.toString());
         existingEntity.setIsPaid(false);
 
-        when(orderPaymentRepository.findByOrderId(orderId)).thenReturn(existingEntity);
+        when(orderPaymentRepository.findByOrderId(orderId)).thenReturn(Optional.of(existingEntity));
         when(orderPaymentRepository.save(existingEntity)).thenReturn(existingEntity);
 
         // Act
