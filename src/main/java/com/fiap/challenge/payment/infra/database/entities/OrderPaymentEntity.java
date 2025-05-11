@@ -2,34 +2,27 @@ package com.fiap.challenge.payment.infra.database.entities;
 
 import java.util.UUID;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-
 import com.fiap.challenge.payment.application.domain.models.Order;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
 
-@Document("order_payments")
-@Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@DynamoDbBean
 public class OrderPaymentEntity {
 
-	  @Id
-	  private String id;
-	  @Field("order_id")
+	  private UUID id;
 	  private String orderId;
 	  
-	  @Field("payment_id")
 	  private String paymentId;
 	  
-	  @Field("order_number")
 	  private Long orderNumber;
 	  
-	  @Field("is_paid")
 	  private Boolean isPaid;
 
 	  public Order toOrder() {
@@ -40,6 +33,29 @@ public class OrderPaymentEntity {
 				  isPaid
 		  );
 	  }
+
+	@DynamoDbPartitionKey
+	public UUID getId() {
+		return id;
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public String getPaymentId() {
+		return paymentId;
+	}
+
+	public Long getOrderNumber() {
+		return orderNumber;
+	}
+
+	public Boolean getIsPaid() {
+		return isPaid;
+	}
+	  
+	  
 }
 	  
 	  

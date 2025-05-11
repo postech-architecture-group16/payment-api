@@ -22,9 +22,10 @@ public class PaymentService implements CreatePaymentUseCase, ConfirmPaymentUseCa
 	@Override
 	public Order createPayment(Order order) {
 		OrderPaymentEntity orderPayment = new OrderPaymentEntity();
+		orderPayment.setId(UUID.randomUUID());
 		orderPayment.setOrderId(String.valueOf(order.getId()));
-		orderPayment.setOrderNumber(order.getOrderNumber());
 		orderPayment.setPaymentId(String.valueOf(UUID.randomUUID()));
+		orderPayment.setOrderNumber(order.getOrderNumber());
 		orderPayment.setIsPaid(Boolean.FALSE);
 		
 		return orderPaymentRepository.save(orderPayment).toOrder();
