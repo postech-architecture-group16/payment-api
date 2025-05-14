@@ -51,6 +51,11 @@
 		</dependency>
 
 		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
@@ -61,10 +66,32 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- OPENAPI -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-common</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+
 		<!-- MQ -->
 		<dependency>
 		   <groupId>org.springframework.boot</groupId>
 		   <artifactId>spring-boot-starter-amqp</artifactId>
+		   <exclusions>
+		     <exclusion>
+    		 	<groupId>com.rabbitmq</groupId>
+		        <artifactId>amqp-client</artifactId>
+		     </exclusion>
+		     <exclusion>
+		       <groupId>com.rabbitmq</groupId>
+		       <artifactId>stream-client</artifactId>
+		     </exclusion>
+           </exclusions>
 		</dependency>
 		<dependency>
 		    <groupId>com.fasterxml.jackson.datatype</groupId>
