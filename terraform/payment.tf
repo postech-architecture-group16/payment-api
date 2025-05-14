@@ -10,6 +10,10 @@ resource "kubernetes_secret" "payment_secret" {
     namespace = kubernetes_namespace.payment_namespace.metadata[0].name
   }
 
+  binary_data = {
+    external-api-token = "QmVhcmVyIEFQUF9VU1ItMTQ5NDA0NTE4MjMwMTg4Ni0wOTEyMDgtZDIyZWFhNzAyMGYwYmYyZWU0ZTQxMDQ1ZGYxZDlmNjAtMTk4NjM1NzIzOQ=="
+  }
+
   data = {
     db-table              = var.dynamo_db_name
     aws_access_key_id     = var.AWS_ACCESS_KEY_ID
